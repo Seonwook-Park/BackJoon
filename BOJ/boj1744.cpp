@@ -9,7 +9,7 @@ int n;
 vector<int> pnum;
 vector<int> nnum;
 int psum, nsum;
-int zero, one;
+int one;
 
 bool comp(int a, int b)
 {
@@ -31,10 +31,8 @@ int main()
             pnum.push_back(tmp);
         else if (tmp == 1)
             one++;
-        else if (tmp < 0)
+        else if (tmp <= 0)
             nnum.push_back(tmp);
-        else
-            zero++;
     }
 
     sort(pnum.begin(), pnum.end(), comp);
@@ -47,11 +45,11 @@ int main()
     if (pnum.size() % 2 != 0)
         psum += pnum[pnum.size() - 1];
 
-    for (int i = 0; i + 1 < nnum.size(); i += 2)
+    for (int i = 0; i + 1 < nnum.size(); i += 2) //홀수로 남은 음수는 알아서 처리해줌
     {
         nsum += nnum[i] * nnum[i + 1];
     }
-    if (nnum.size() % 2 != 0 && zero == 0)
+    if (nnum.size() % 2 != 0)
         nsum += nnum[nnum.size() - 1];
 
     cout << psum + nsum + one;
